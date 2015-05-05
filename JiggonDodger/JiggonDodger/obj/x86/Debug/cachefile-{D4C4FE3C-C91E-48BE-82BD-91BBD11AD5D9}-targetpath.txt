@@ -1,0 +1,8 @@
+Content\Tiles\Player.xnb
+Content\Tiles\Score.xnb
+Content\Fonts\ScoreFont.xnb
+Content\Tiles\High_Quality_Pixel_hearth.xnb
+Content\Tiles\Low_Quality_Pixel_hearth.xnb
+Content\Tiles\Points.xnb
+Content\Tiles\MiniBlock.xnb
+Content\Fonts\CreditsFont.xnb
