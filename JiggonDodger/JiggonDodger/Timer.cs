@@ -10,10 +10,14 @@ namespace JiggonDodger
     {
         #region variables
         public int Time { get;  set; }
+        private int timerCount = 0;
+        private int timerLimit = 60;
         #endregion
+
 
         public Timer()
         {
+            
             CurrentTimer = this;
         }
 
@@ -21,14 +25,17 @@ namespace JiggonDodger
 
         public void Update(GameTime gameTime)
         {
+            timerCount++;
             SetTimer(gameTime);
         }
 
         private void SetTimer(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.Milliseconds == 100)
+            if (timerCount >= timerLimit)
             {
-                Time +=1;
+                
+                Time++;
+                timerCount = 0;
             }
         }
     }

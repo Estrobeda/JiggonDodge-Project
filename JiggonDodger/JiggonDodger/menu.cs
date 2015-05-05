@@ -9,6 +9,16 @@ namespace JiggonDodger
 {
     class Menu
     {
+        private enum menuState
+        {
+            MoveUp = -1,
+            ExitGame = 0,
+            HelpMe = 1,
+            Credits = 2,
+            StartGame = 3,
+            MoveDown = 4
+        }
+
         private  static Vector2 startGamePos;
         private static Vector2 creditsPos;
         private static Vector2 creditsTextPos;
@@ -98,30 +108,30 @@ namespace JiggonDodger
 
             switch (select)
             {
-                case 4:
+                case (int)menuState.MoveDown:
                     select = 0;
                     break;
 
-                case 3:
+                case (int)menuState.StartGame:
                     JiggonDodger.BoxSpeed = 0.3f;
                     JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, selectLabel, startGamePos, Color.White);
                     break;
 
-                case 2:
+                case (int)menuState.Credits:
                     JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, selectLabel, creditsPos, Color.White);
                     JiggonDodger.SpriteBatch.DrawString(JiggonDodger.creditsFont, creditsText, creditsTextPos, Color.White);
                     break;
 
-                case 1:
+                case (int)menuState.HelpMe:
                     JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, selectLabel, helpPos, Color.White);
                     JiggonDodger.SpriteBatch.DrawString(JiggonDodger.creditsFont, helpText, helpTextPos, Color.White);
                     break;
 
-                case 0:
+                case (int)menuState.ExitGame:
                     JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, selectLabel, exitPos, Color.White);
                     break;
 
-                case -1:
+                case (int)menuState.MoveUp:
                     select = 3;
                     break;
 

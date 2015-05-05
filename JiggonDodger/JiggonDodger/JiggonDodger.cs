@@ -62,10 +62,6 @@ namespace JiggonDodger
         public static bool isGameOver{get;set;}
         public static bool exitGame { get; set; }
 
-        //public static bool mainMenu{get;set;}
-  
-
-
         #endregion
 
         public JiggonDodger()
@@ -121,6 +117,8 @@ namespace JiggonDodger
 
         protected override void Update(GameTime gameTime)
         {
+            CheckForKeys();
+
             if (exitGame)
             {
                 Exit();
@@ -132,10 +130,17 @@ namespace JiggonDodger
                 linkToPlayer.Update(gameTime);
                 map.MoveBlockLinesAndPushPlayerIfNeeded(gameTime);
                 linkToPoints.Update(gameTime);
+            }            
+        }
+
+        private void CheckForKeys()
+        {
+            KeyboardState keyboard = Keyboard.GetState();
+            if (keyboard.IsKeyDown(Keys.Escape))
+            {
+                isGameOver = true;
             }
 
-
-            
         }
 
 
