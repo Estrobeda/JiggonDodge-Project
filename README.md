@@ -1,10 +1,5 @@
 # JiggonDodge-Project
 My first Upload
-////////////////////////////////////////////////////////////////
-[WARNING!]													  //
-This game may cause epilepsy. Please play it on your own Risk.//
-////////////////////////////////////////////////////////////////
-
 
 This project is inteded to be like a tutorial for myself but I have plans to make a tutorial for others later. But first I need to 
 have the knowlage before doing the tutorial.
