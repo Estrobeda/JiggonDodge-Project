@@ -1,1 +1,4 @@
 C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodgerContent\obj\x86\Debug\JiggonDodgerContent.contentprojResolveAssemblyReference.cache
+C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\ReStruct\JiggonDodger\JiggonDodgerContent\obj\x86\Debug\JiggonDodgerContent.contentprojResolveAssemblyReference.cache
+C:\Users\rickard.ostlund\Desktop\Github\Restruct\JiggonDodger\JiggonDodgerContent\obj\x86\Debug\JiggonDodgerContent.contentprojResolveAssemblyReference.cache
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodgerContent\obj\x86\Debug\JiggonDodgerContent.contentprojResolveAssemblyReference.cache

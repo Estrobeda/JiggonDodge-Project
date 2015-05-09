@@ -4,69 +4,66 @@ using System;
 
 namespace JiggonDodger
 {
-    public class BlockRows : JiggonDodger
+    public class BlockRows
     {
 
-        #region Variables and Properties
-        public Vector2 BlockPosition { get; set; }
-        public Texture2D BlockTexture { get; set; }
+        #region public
+        public static Texture2D texture;
+        public static float speed = 16f;
+
+        public Vector2 position { get; set; }
         public int IndexToEmptyPath { get; set; }
-       
+
         #endregion
+
+        private float deltaTime;
 
         public BlockRows(Vector2 _blockPosition, Texture2D _boxTexture)
         {
-            BlockPosition = _blockPosition;
-            BlockTexture = _boxTexture;
+            position = _blockPosition;
             SetRandomHole();
         }
 
         //Fix Collision on top of ScreenBoundary!!!
         internal void GenerateRandom()
         {
-            BlockPosition = Vector2.Zero - (Vector2.UnitY * blockTexture.Height);
+            position = Vector2.Zero - (Vector2.UnitY * texture.Height);
             SetRandomHole();
         }
 
         public void SetRandomHole()
         {
 
-            IndexToEmptyPath = JiggonDodger.Random.Next(JiggonDodger.NumberOfBoxesPerRow);
+            IndexToEmptyPath = JiggonDodger.random.Next(Map.numberOfBoxesPerRow);
             
         }
 
-        public void Update(GameTime _gameTime)
+        public void Update(GameTime gameTime)
         {
-                BoxSpeed += (float)_gameTime.ElapsedGameTime.TotalHours;
-                BlockPosition += Vector2.UnitY * (float)_gameTime.ElapsedGameTime.TotalMilliseconds * BoxSpeed;
-                BlockColor.CurrentColor.Update();
-            
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+             //   speed += (float)gameTime.ElapsedGameTime.TotalHours;
+            position += Vector2.UnitY * speed * deltaTime;
+               // BlockColor.CurrentColor.Update();
         }
 
         public void Draw()
         {
-            for (int i = 0; i < NumberOfBoxesPerRow; i++)
+            for (int i = 0; i < Map.numberOfBoxesPerRow; i++)
             {
                 if (i != IndexToEmptyPath)
                 {
-                    SpriteBatch.Draw(BlockTexture, BlockPosition + i * Vector2.UnitX * BlockTexture.Width, BlockColor.CurrentColor.spriteColor);
+                    JiggonDodger.spriteBatch.Draw(texture, position + i * Vector2.UnitX * texture.Width, Color.White);
                 }
-
-
             }
-
-            //JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, Speed.ToString(), new Vector2(JiggonDodger.ScreenBoundary.Width / 4, 0), Color.White);
         }
-
-
 
         public bool Overlaps(Rectangle rect)
         {
-            Rectangle testRectangle = new Rectangle((int)BlockPosition.X, (int)BlockPosition.Y, BlockTexture.Width, BlockTexture.Height);
-            Vector2 originalPos = JiggonDodger.linkToPlayer.PlayerPosition;
-            for (int i = 0; i < JiggonDodger.NumberOfBoxesPerRow; i++)
+            Rectangle testRectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            Vector2 originalPos = JiggonDodger.linkToPlayer.playerPosition;
+            for (int i = 0; i < Map.numberOfBoxesPerRow; i++)
             {
-                testRectangle.X = i * BlockTexture.Width;
+                testRectangle.X = i * texture.Width;
                 if (i != IndexToEmptyPath && testRectangle.Intersects(rect))
                 {
                     return true;

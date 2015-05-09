@@ -7,9 +7,9 @@ namespace JiggonDodger
 {
     class Health
     {
-        public int healthCount { get; set; }
-        public Texture2D hearthTexture { get; set; }
-        public Vector2 hearthPosition { get; set; }
+        public static Texture2D hearthTexture { get; set; }
+        public static Vector2 hearthPosition { get; set; }
+        public static int healthCount { get; set; }
 
         public Health() 
         {
@@ -22,7 +22,7 @@ namespace JiggonDodger
         {
             for (int i = 0; i < healthCount; i++)
             {
-                JiggonDodger.SpriteBatch.Draw(hearthTexture, new Vector2(hearthPosition.X + hearthTexture.Width * i, hearthPosition.Y), Color.White);
+                JiggonDodger.spriteBatch.Draw(hearthTexture, new Vector2(hearthPosition.X + hearthTexture.Width * i, hearthPosition.Y), Color.White);
             }
         }
     }

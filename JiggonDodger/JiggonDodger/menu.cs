@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -18,32 +19,37 @@ namespace JiggonDodger
             StartGame = 3,
             MoveDown = 4
         }
+        #region Variables
+        public static SpriteFont creditsFont { get; set; }
+        public  bool isPaused { get; set; }
+        private Vector2 startGamePos;
+        private Vector2 creditsPos;
+        private Vector2 creditsTextPos;
+        private Vector2 helpPos;
+        private Vector2 helpTextPos;
+        private Vector2 exitPos;
 
-        private  static Vector2 startGamePos;
-        private static Vector2 creditsPos;
-        private static Vector2 creditsTextPos;
-        private static Vector2 helpPos;
-        private static Vector2 helpTextPos;
-        private static Vector2 exitPos;
 
-        private static String selectLabel = ">";
-        private static String startLabel = " Start";
+        private String selectLabel = ">";
+        private String startLabel = " Start";
+        private String continueLabel = " Continue";
 
-        private static String creditsLabel = " Credits";
-        private static String creditsText = " Created by Rickard Ostlund 2015 [LBS Halmstad] \n Supported and Inspired by xnaFAN.net";
+        private String creditsLabel = " Credits";
+        private String creditsText = " Created by Rickard Ostlund 2015 [LBS Halmstad] \n Supported and Inspired by xnaFAN.net";
 
-        private static String helpLabel = " Help";
-        private static String helpText = " Controlls: [<] [^] [>] \n \n"
+        private String helpLabel = " Help";
+        private String helpText = " Controlls: [<] [^] [>] \n \n"
                                          + " You play the game using the arrow keys. \n "
                                          + "You will have to move through the holes \n "
                                          + "in the Rows that are falling downwards. \n "
                                          + "You have 3 extra lives and the Rows will \n"
                                          + " fall faster and faster";
 
-        private static String exitLabel = " Exit";
+        private String exitLabel = " Exit";
 
         private bool isPressed = false;
         public  int select = 0;
+        #endregion
 
 
         public Menu()
@@ -56,7 +62,9 @@ namespace JiggonDodger
             helpPos = new Vector2(JiggonDodger.UI_OffsetX , 120);
             helpTextPos = new Vector2(JiggonDodger.UI_OffsetX + 200, 120); 
 
-            exitPos = new Vector2(JiggonDodger.UI_OffsetX, JiggonDodger.ScreenBoundary.Height / 3.25f);
+            exitPos = new Vector2(JiggonDodger.UI_OffsetX, JiggonDodger.screenBoundary.Height / 3.25f);
+
+            isPaused = false;
         }
 
         public void Select(GameTime gameTime)
@@ -79,9 +87,13 @@ namespace JiggonDodger
             if (select == 3 && Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 
-                Health.Currenthealth.healthCount = 3;
+                
                 //Store this later to create a HighScore!!!! [Progress not started yet]
-                Points.CurrentPoints.Time = 0;
+                if (!isPaused)
+                {
+                    Health.healthCount = 3;
+                    Points.CurrentPoints.Time = 0;
+                }
                 JiggonDodger.isGameOver = false;
             }
 
@@ -98,13 +110,19 @@ namespace JiggonDodger
         public void Draw()
         {
 
-            JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, startLabel, startGamePos, Color.White);
-            
-            JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, creditsLabel, creditsPos, Color.White);
+            if (!isPaused)
+            {
+                JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ Points.pointsFont, startLabel, startGamePos, Color.White);
+            }
+            else
+            {
+                JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ Points.pointsFont, continueLabel, startGamePos, Color.White);
+            }
+            JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ Points.pointsFont, creditsLabel, creditsPos, Color.White);
 
-            JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, helpLabel, helpPos, Color.White);
+            JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ Points.pointsFont, helpLabel, helpPos, Color.White);
 
-            JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, exitLabel, exitPos, Color.White);
+            JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ Points.pointsFont, exitLabel, exitPos, Color.White);
 
             switch (select)
             {
@@ -113,22 +131,22 @@ namespace JiggonDodger
                     break;
 
                 case (int)menuState.StartGame:
-                    JiggonDodger.BoxSpeed = 0.3f;
-                    JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, selectLabel, startGamePos, Color.White);
+                    BlockRows.speed = 0.3f;
+                        JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ Points.pointsFont, selectLabel, startGamePos, Color.White);
                     break;
 
                 case (int)menuState.Credits:
-                    JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, selectLabel, creditsPos, Color.White);
-                    JiggonDodger.SpriteBatch.DrawString(JiggonDodger.creditsFont, creditsText, creditsTextPos, Color.White);
+                    JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ Points.pointsFont, selectLabel, creditsPos, Color.White);
+                    JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ creditsFont, creditsText, creditsTextPos, Color.White);
                     break;
 
                 case (int)menuState.HelpMe:
-                    JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, selectLabel, helpPos, Color.White);
-                    JiggonDodger.SpriteBatch.DrawString(JiggonDodger.creditsFont, helpText, helpTextPos, Color.White);
+                    JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ Points.pointsFont, selectLabel, helpPos, Color.White);
+                    JiggonDodger.spriteBatch.DrawString(creditsFont, helpText, helpTextPos, Color.White);
                     break;
 
                 case (int)menuState.ExitGame:
-                    JiggonDodger.SpriteBatch.DrawString(JiggonDodger.scoreFont, selectLabel, exitPos, Color.White);
+                    JiggonDodger.spriteBatch.DrawString(/*JiggonDodger.scoreFont*/ Points.pointsFont, selectLabel, exitPos, Color.White);
                     break;
 
                 case (int)menuState.MoveUp:

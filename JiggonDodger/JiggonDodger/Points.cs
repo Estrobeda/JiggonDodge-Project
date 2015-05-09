@@ -9,10 +9,12 @@ namespace JiggonDodger
 {
     class Points : Timer
     {
-        public SpriteFont pointsFont { get; set; }
-        public Texture2D pointsTexture { get; set; }
-        public Vector2 pointsPosition { get; set; }
-        public Vector2 pointTextPosition { get; set; }
+        #region properties
+        public static SpriteFont pointsFont { get; set; }
+        public static Texture2D pointsTexture { get; set; }
+        public static Vector2 pointsPosition { get; set; }
+        public static Vector2 pointTextPosition { get; set; }
+        #endregion
 
         public Points()
         {
@@ -23,8 +25,8 @@ namespace JiggonDodger
 
         public void Draw()
         {
-            JiggonDodger.SpriteBatch.DrawString(pointsFont, CurrentTimer.Time.ToString(), pointTextPosition, Color.White);
-            JiggonDodger.SpriteBatch.Draw(pointsTexture, pointsPosition, Color.Yellow);
+            JiggonDodger.spriteBatch.DrawString(pointsFont, CurrentTimer.Time.ToString(), pointTextPosition, Color.White);
+            JiggonDodger.spriteBatch.Draw(pointsTexture, pointsPosition, Color.Yellow);
         }
     }
 }

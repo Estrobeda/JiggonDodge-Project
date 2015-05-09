@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiggonDodger", "JiggonDodger\JiggonDodger\JiggonDodger.csproj", "{DCA60CB3-F4D4-4730-B27F-4123A0CEBFFA}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "JiggonDodgerContent", "JiggonDodger\JiggonDodgerContent\JiggonDodgerContent.contentproj", "{D4C4FE3C-C91E-48BE-82BD-91BBD11AD5D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiggonDodgerContent", "JiggonDodger\JiggonDodgerContent\JiggonDodgerContent.contentproj", "{D4C4FE3C-C91E-48BE-82BD-91BBD11AD5D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

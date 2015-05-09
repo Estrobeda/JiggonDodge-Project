@@ -9,60 +9,35 @@ namespace JiggonDodger
 
     public class JiggonDodger : Game
     {
-
-        //used to easily change the whole game instead of going through all classes, this file is main!.
-        #region Variables and Properties
-        #region JiggonDodger Variables
+        public static Rectangle screenBoundary { get; private set; }
+        public static SpriteBatch spriteBatch { get; private set; }
+     //   public static JiggonDodger CurrentGame { get; set; }
+        public static Random random = new Random();
+        private static GameTime _gameTime;
         private GraphicsDeviceManager jiggonGraphics;
-        protected static Texture2D blockTexture, playerTexture;
-        public static List<BlockRows> BlockRows = new List<BlockRows>();
-        public static Rectangle ScreenBoundary { get; private set; }
-        public static SpriteBatch SpriteBatch { get; private set; }
-        public static Random Random = new Random();
-        private Menu menu;
-        #endregion
 
-        #region Player Variables
+
         public static Player linkToPlayer;
-        protected float playerSpeed = 16f; //Has to be a multiple of 32 due to collision detection
-        #endregion
 
-        #region BlockRows Variables
-        public static float BoxSpeed { get; set; }
+        public static List<BlockRows> _blockRowsList = new List<BlockRows>();
 
-        protected float numberOfRows = 2;
-        public static int NumberOfBoxesPerRow = 16;
-        
-        #endregion
+      //  public BlockColor changeColorOnRowsAndMap;
 
-        #region Map Variables
         private Map map;
-        public BlockColor changeColorOnRowsAndMap;
-        #endregion
 
-        #region Score Variables
-        Points linkToPoints;
-        public static SpriteFont scoreFont { get; set; }
-        private Texture2D pointTexture;
-        private Vector2 pointPosition;
-        private Vector2 pointFontPosition;
-        #endregion
+        private Menu menu;
 
-        #region
-        Health linkToHealth;
-        private Texture2D healthTexture;
-        private Vector2 healthPosition;
-        public static int healthCount = 3;
-        #endregion
+        private Points linkToPoints;
 
-        public static SpriteFont creditsFont { get; set; }
+        //public static int healthCount = 3;
+        private Health linkToHealth;
+
+        //public static SpriteFont creditsFont { get; set; }
         public static int UI_OffsetY = 10;
         public static int UI_OffsetX = 10;
 
-        public static bool isGameOver{get;set;}
+        public static bool isGameOver{ get;set; }
         public static bool exitGame { get; set; }
-
-        #endregion
 
         public JiggonDodger()
         {
@@ -71,66 +46,64 @@ namespace JiggonDodger
             
             jiggonGraphics.PreferredBackBufferWidth = 1024;
             jiggonGraphics.PreferredBackBufferHeight = 768;
+
+            jiggonGraphics.SynchronizeWithVerticalRetrace = true;
+            this.IsFixedTimeStep = true;
+
+
+
+         //   CurrentGame = this;
         }
 
 
         protected override void LoadContent()
         {
-            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             isGameOver = true;
             #region Content Loads
-            blockTexture = Content.Load<Texture2D>(@"Tiles\MiniBlock");
-            playerTexture = Content.Load<Texture2D>(@"Tiles\Player");
-            pointTexture = Content.Load<Texture2D>(@"Tiles\Points");
-            healthTexture = Content.Load<Texture2D>(@"Tiles\Low_Quality_Pixel_hearth");
+            BlockRows.texture = Content.Load<Texture2D>(@"Tiles\MiniBlock");
+            Player.playerTexture = Content.Load<Texture2D>(@"Tiles\Player");
+            Points.pointsTexture = Content.Load<Texture2D>(@"Tiles\Points");
+            Points.pointsFont = Content.Load<SpriteFont>(@"Fonts\ScoreFont");
+            Health.hearthTexture = Content.Load<Texture2D>(@"Tiles\Low_Quality_Pixel_hearth");
+            Menu.creditsFont = Content.Load<SpriteFont>(@"Fonts\CreditsFont");
+            #endregion
+
+            
+            screenBoundary = GraphicsDevice.PresentationParameters.Bounds;
+          //changeColorOnRowsAndMap = new BlockColor();
+
+            Points.pointsPosition = new Vector2(UI_OffsetX, UI_OffsetY);
+            Points.pointTextPosition = new Vector2(UI_OffsetX + Points.pointsTexture.Width * 1.25f, Points.pointsPosition.Y);
+
+            linkToPoints = new Points();// { pointsTexture = pointTexture, pointsPosition = pointPosition, pointTextPosition = pointFontPosition, pointsFont = scoreFont };
            
-            scoreFont = Content.Load<SpriteFont>(@"Fonts\ScoreFont");
-
-            creditsFont = Content.Load<SpriteFont>(@"Fonts\CreditsFont");
-            #endregion
-            #region Map
-            BoxSpeed = 0.3f;
-            ScreenBoundary = GraphicsDevice.PresentationParameters.Bounds;
-            changeColorOnRowsAndMap = new BlockColor();
-            #endregion
-            #region Points
-            pointPosition = new Vector2(UI_OffsetX, UI_OffsetY);
-            pointFontPosition = new Vector2(UI_OffsetX + pointTexture.Width * 1.25f, pointPosition.Y);
-
-            linkToPoints = new Points { pointsTexture = pointTexture, pointsPosition = pointPosition, pointTextPosition = pointFontPosition, pointsFont = scoreFont };
-            #endregion
-            #region Health
-            healthPosition = new Vector2(UI_OffsetX, healthTexture.Height * 1.5f + UI_OffsetY);
-            linkToHealth = new Health { hearthTexture = healthTexture, hearthPosition = healthPosition, healthCount = healthCount };
-            Health.Currenthealth.healthCount = healthCount;
-
-
-            #endregion
+            Health.hearthPosition = new Vector2(UI_OffsetX, Health.hearthTexture.Height * 1.5f + UI_OffsetY);
+            linkToHealth = new Health();
+ 
             menu = new Menu();
-            StartNewGame();
-        }
 
-        void StartNewGame()
-        {
+
             map = new Map();
         }
 
+
         protected override void Update(GameTime gameTime)
         {
-            CheckForKeys();
-
-            if (exitGame)
-            {
-                Exit();
-            }
+            _gameTime = gameTime;   
             menu.Select(gameTime);
-            Console.WriteLine(isGameOver.ToString());
+           // Console.WriteLine(isGameOver.ToString());
             if (!isGameOver)
             {
                 linkToPlayer.Update(gameTime);
                 map.MoveBlockLinesAndPushPlayerIfNeeded(gameTime);
                 linkToPoints.Update(gameTime);
-            }            
+                CheckForKeys();
+            }
+            if (exitGame && isGameOver)
+            {
+                Exit();
+            }
         }
 
         private void CheckForKeys()
@@ -138,39 +111,50 @@ namespace JiggonDodger
             KeyboardState keyboard = Keyboard.GetState();
             if (keyboard.IsKeyDown(Keys.Escape))
             {
+                menu.isPaused = true;
                 isGameOver = true;
             }
 
         }
 
 
+        public static void PushPlayerOnCollision(BlockRows line)
+        {
+            Rectangle playerBounds = linkToPlayer.GetBounds();
+            while (line.Overlaps(playerBounds))
+            {
+                linkToPlayer.playerPosition += Vector2.UnitY / 2 * (float)_gameTime.ElapsedGameTime.TotalSeconds;
+                playerBounds = linkToPlayer.GetBounds();
+            }
+        }
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(new Color(new Vector3(0.5f, 0.70f, 0.85f)));
-            SpriteBatch.Begin();
+            spriteBatch.Begin();
 
             if (!isGameOver)
             {
-                
-                    BlockRows.ForEach(line => line.Draw());
+                    _blockRowsList.ForEach(line => line.Draw());
                     linkToPlayer.Draw();
 
                     Points.CurrentPoints.Draw();
                     Health.Currenthealth.Draw();
-                    if (Health.Currenthealth.healthCount <= 0)
+                    if (Health.healthCount <= 0)
                     {
                         isGameOver = true;
-                        menu.select = 2;
+                        menu.select = 3;
                     }
             }
-                else
+            else
                 {
+                    if (menu.select > 4 || menu.select < -1) menu.select = 3;
                     menu.Draw();
                 }
             
 
 
-            SpriteBatch.End();
+            spriteBatch.End();
 
         }
     }

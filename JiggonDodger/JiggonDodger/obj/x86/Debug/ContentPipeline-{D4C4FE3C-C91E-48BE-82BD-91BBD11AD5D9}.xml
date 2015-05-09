@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Player.xnb</Output>
-      <Time>2015-05-01T20:47:48.1821797+02:00</Time>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Player.xnb</Output>
+      <Time>2015-05-09T11:35:18.2575817+02:00</Time>
     </Item>
     <Item>
       <Source>Tiles\Score.png</Source>
@@ -16,17 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Score.xnb</Output>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Score.xnb</Output>
       <Time>2015-05-01T22:43:02.9099435+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\ScoreFont.SpriteFont</Source>
-      <Name>Fonts\ScoreFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Fonts\ScoreFont.xnb</Output>
-      <Time>2015-05-02T17:59:40.0062453+02:00</Time>
     </Item>
     <Item>
       <Source>Tiles\High_Quality_Pixel_hearth.png</Source>
@@ -34,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\High_Quality_Pixel_hearth.xnb</Output>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\High_Quality_Pixel_hearth.xnb</Output>
       <Time>2015-05-02T19:20:26.7453525+02:00</Time>
     </Item>
     <Item>
@@ -43,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Low_Quality_Pixel_hearth.xnb</Output>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Low_Quality_Pixel_hearth.xnb</Output>
       <Time>2015-05-02T19:20:26.7316023+02:00</Time>
     </Item>
     <Item>
@@ -52,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Points.xnb</Output>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Points.xnb</Output>
       <Time>2015-05-02T19:34:08.8336152+02:00</Time>
     </Item>
     <Item>
@@ -61,8 +52,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\MiniBlock.xnb</Output>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\MiniBlock.xnb</Output>
       <Time>2015-05-02T19:52:36.4992117+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\ScoreFont.SpriteFont</Source>
+      <Name>Fonts\ScoreFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Fonts\ScoreFont.xnb</Output>
+      <Time>2015-05-02T17:59:40.0062453+02:00</Time>
     </Item>
     <Item>
       <Source>Fonts\CreditsFont.SpriteFont</Source>
@@ -70,7 +70,7 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Fonts\CreditsFont.xnb</Output>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Fonts\CreditsFont.xnb</Output>
       <Time>2015-05-04T12:57:02.3775235+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -80,10 +80,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodgerContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\rickard.ostlund\Desktop\Bitbucket\Jiggon-RandomDodge\JiggonDodger\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodgerContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
