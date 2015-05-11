@@ -24,7 +24,8 @@ namespace JiggonDodger
         private void CreatePlayer()
         {
           //  Console.WriteLine("Create Player");
-            Vector2 centeredCloseToBottom = new Vector2(JiggonDodger.screenBoundary.Width / 2, JiggonDodger.screenBoundary.Height * .6f);
+            Vector2 centeredCloseToBottom = new Vector2(JiggonDodger.screenBoundary.Width / 2, 
+                                                        JiggonDodger.screenBoundary.Height * .6f);
             JiggonDodger.linkToPlayer = new Player() { playerPosition = centeredCloseToBottom };
         }
 
@@ -33,8 +34,9 @@ namespace JiggonDodger
         {
             for (int i = 0; i < numberOfRows; i++)
             {
-                var newBlockLine =
-                    new BlockRows(-(Vector2.UnitY * JiggonDodger.screenBoundary.Height + Vector2.UnitY*BlockRows.texture.Height) / numberOfRows * i, BlockRows.texture);
+                var newBlockLine = new BlockRows(-(Vector2.UnitY * JiggonDodger.screenBoundary.Height + 
+                                                    Vector2.UnitY*BlockRows.texture.Height) / numberOfRows * i, 
+                                                   BlockRows.texture);
                 JiggonDodger._blockRowsList.Add(newBlockLine);
             }
         }

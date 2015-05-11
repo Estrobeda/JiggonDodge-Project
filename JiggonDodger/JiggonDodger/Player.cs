@@ -104,11 +104,27 @@ namespace JiggonDodger
         {
             if (moveRightOrLeft)
             {
-                JiggonDodger.spriteBatch.Draw(playerTexture, playerPosition, null, Color.White, playerRoatationAngle, playerOriginPosition, 1, SpriteEffects.FlipHorizontally, 0f);
+                JiggonDodger.spriteBatch.Draw(playerTexture, 
+                                              playerPosition, 
+                                              null, 
+                                              Color.White, 
+                                              playerRoatationAngle, 
+                                              playerOriginPosition, 
+                                              1, 
+                                              SpriteEffects.FlipHorizontally, 
+                                              0f);
             }
             else
             {
-                JiggonDodger.spriteBatch.Draw(playerTexture, playerPosition, null, Color.White, playerRoatationAngle, playerOriginPosition, 1, SpriteEffects.FlipVertically, 0f);
+                JiggonDodger.spriteBatch.Draw(playerTexture, 
+                                              playerPosition, 
+                                              null, 
+                                              Color.White, 
+                                              playerRoatationAngle, 
+                                              playerOriginPosition, 
+                                              1, 
+                                              SpriteEffects.FlipVertically, 
+                                              0f);
             }
         }
     }

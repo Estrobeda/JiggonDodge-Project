@@ -21,7 +21,7 @@ namespace JiggonDodger
 
         public static List<BlockRows> _blockRowsList = new List<BlockRows>();
 
-      //  public BlockColor changeColorOnRowsAndMap;
+        private BlockColor color;
 
         private Map map;
 
@@ -62,6 +62,7 @@ namespace JiggonDodger
             isGameOver = true;
             #region Content Loads
             BlockRows.texture = Content.Load<Texture2D>(@"Tiles\MiniBlock");
+            BlockRows.arrowindication = Content.Load<Texture2D>(@"Tiles\Arrows-Up-Animation");
             Player.playerTexture = Content.Load<Texture2D>(@"Tiles\Player");
             Points.pointsTexture = Content.Load<Texture2D>(@"Tiles\Points");
             Points.pointsFont = Content.Load<SpriteFont>(@"Fonts\ScoreFont");
@@ -76,13 +77,13 @@ namespace JiggonDodger
             Points.pointsPosition = new Vector2(UI_OffsetX, UI_OffsetY);
             Points.pointTextPosition = new Vector2(UI_OffsetX + Points.pointsTexture.Width * 1.25f, Points.pointsPosition.Y);
 
-            linkToPoints = new Points();// { pointsTexture = pointTexture, pointsPosition = pointPosition, pointTextPosition = pointFontPosition, pointsFont = scoreFont };
-           
+            linkToPoints = new Points();
+
             Health.hearthPosition = new Vector2(UI_OffsetX, Health.hearthTexture.Height * 1.5f + UI_OffsetY);
             linkToHealth = new Health();
  
             menu = new Menu();
-
+            color = new BlockColor();
 
             map = new Map();
         }
@@ -90,11 +91,12 @@ namespace JiggonDodger
 
         protected override void Update(GameTime gameTime)
         {
-            _gameTime = gameTime;   
+             
             menu.Select(gameTime);
            // Console.WriteLine(isGameOver.ToString());
             if (!isGameOver)
             {
+                color.Update();
                 linkToPlayer.Update(gameTime);
                 map.MoveBlockLinesAndPushPlayerIfNeeded(gameTime);
                 linkToPoints.Update(gameTime);
@@ -123,14 +125,15 @@ namespace JiggonDodger
             Rectangle playerBounds = linkToPlayer.GetBounds();
             while (line.Overlaps(playerBounds))
             {
-                linkToPlayer.playerPosition += Vector2.UnitY / 2 * (float)_gameTime.ElapsedGameTime.TotalSeconds;
+                linkToPlayer.playerPosition += Vector2.UnitY / 2 /* (float)gameTime.ElapsedGameTime.TotalSeconds*/;
                 playerBounds = linkToPlayer.GetBounds();
             }
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(new Vector3(0.5f, 0.70f, 0.85f)));
+           // GraphicsDevice.Clear(new Color(new Vector3(0.5f, 0.70f, 0.85f)));
+            GraphicsDevice.Clear(new Color(0.1f, 0.1f, 0.1f));
             spriteBatch.Begin();
 
             if (!isGameOver)

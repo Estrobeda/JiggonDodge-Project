@@ -8,47 +8,98 @@ namespace JiggonDodger
 {
     public class BlockColor
     {
+        private  Color returnColor;
+        private  Random randomColor =  new Random();
+        private List<Color> colorList = new List<Color>();
+        private List<Color> oldColorList = new List<Color>();
 
-        private Color color = new Color();
-        private bool greenLimit = false;
-        private bool blueLimit = false;
-        public Color spriteColor { get; set; }
+        private int timer;
+        private int counter = 50;
 
-        private int timer = 0;
-        private int limit = 10;
-
-
-        public BlockColor()
-        {
+        public BlockColor() {
             CurrentColor = this;
         }
 
         public static BlockColor CurrentColor { get; set; }
 
-        public void Update()
+        public void setColor(int size)
         {
-            timer++;
-            GenerateColor();
+
+            for (int i = 0; i < size; i++) {
+                switch (i) { 
+                    case 0:
+                        colorList.Add(Color.MidnightBlue);
+                        break;
+                    case 1:
+                        colorList.Add(Color.Purple);
+                        break;
+                    case 2:
+                        colorList.Add(Color.MediumPurple);
+                        break;
+                    case 3:
+                        colorList.Add(Color.Magenta);
+                        break;
+                    case 4:
+                        colorList.Add(Color.Red);
+                        break;
+                    case 5:
+                        colorList.Add(Color.Orange);
+                        break;
+                    case 6:
+                        colorList.Add(Color.Yellow);
+                        break;
+                    case 7:
+                        colorList.Add(Color.YellowGreen);
+                        break;
+                    case 8:
+                        colorList.Add(Color.Lime);
+                        break;
+                    case 9:
+                        colorList.Add(Color.MediumSeaGreen);
+                        break;
+                    case 10:
+                        colorList.Add(Color.Aqua);
+                        break;
+                    case 12:
+                        colorList.Add(Color.RoyalBlue);
+                        break;
+                    case 13:
+                        colorList.Add(Color.Blue);
+                        break;
+                    case 14:
+                        colorList.Add(Color.BlueViolet);
+                        break;
+                    case 15:
+                        colorList.Add(Color.DarkBlue);
+                        break;
+                    case 16:
+                        colorList.Add(Color.Violet);
+                        break;
+                }
+            }
         }
 
-        private void GenerateColor()
-        {
-            //   timer++;
-            if (timer >= limit)
+        public void Update() {
+            timer++;
+
+            if (timer >= counter)
             {
-                timer = 0;
-
-                for (byte i = 0; i < 255; i++)
+                oldColorList = colorList;
+               
+                for (int i = 0; i < colorList.Count - 1; i++)
                 {
-                    color = new Color(new Vector3(0, i + 1, i));
-
+                    colorList.RemoveAt((colorList.Count - 1) - i);
+                    colorList.Insert((colorList.Count - 1) - i, oldColorList[i]);   
                 }
-
-
-                    spriteColor = color;
-
+               
+                timer = 0;
             }
+        }
 
+        public Color getColor(int i) {
+            
+            returnColor = colorList[i];           
+            return returnColor;
         }
     }
 }

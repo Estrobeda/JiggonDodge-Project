@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Player.xnb</Output>
-      <Time>2015-05-09T11:35:18.2575817+02:00</Time>
+      <Time>2015-05-09T12:47:07.7259749+02:00</Time>
     </Item>
     <Item>
       <Source>Tiles\Score.png</Source>
@@ -72,6 +72,24 @@
       <Options>None</Options>
       <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Fonts\CreditsFont.xnb</Output>
       <Time>2015-05-04T12:57:02.3775235+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Tiles\Arrow-Indicatior.png</Source>
+      <Name>Tiles\Arrow-Indicatior</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Arrow-Indicatior.xnb</Output>
+      <Time>2015-05-11T12:11:32.7809232+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Tiles\Arrows-Up-Animation.png</Source>
+      <Name>Tiles\Arrows-Up-Animation</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Arrows-Up-Animation.xnb</Output>
+      <Time>2015-05-11T12:42:21.0940354+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
