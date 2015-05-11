@@ -72,7 +72,7 @@ namespace JiggonDodger
                 {
                     JiggonDodger.spriteBatch.Draw(texture, 
                                                   position + i * Vector2.UnitX * texture.Width, 
-                                                  BlockColor.CurrentColor.getColor(Map.numberOfBoxesPerRow - i));
+                                                  BlockColor.CurrentColor.getColor(Map.numberOfBoxesPerRow - i));  //Change CurrentColor.getColor(Map.numberOfBoxesPerRow-i) to Color.White if the color changes are to extreame
                 }
                 else {
                     JiggonDodger.spriteBatch.Draw(arrowindication, 

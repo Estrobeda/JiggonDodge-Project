@@ -12,6 +12,7 @@ namespace JiggonDodger
         public int Time { get;  set; }
         private int timerCount = 0;
         private int timerLimit = 60;
+       
         #endregion
 
 
@@ -28,6 +29,9 @@ namespace JiggonDodger
             timerCount++;
             SetTimer(gameTime);
         }
+
+
+
 
         private void SetTimer(GameTime gameTime)
         {

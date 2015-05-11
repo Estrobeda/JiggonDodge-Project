@@ -91,6 +91,15 @@
       <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Arrows-Up-Animation.xnb</Output>
       <Time>2015-05-11T12:42:21.0940354+02:00</Time>
     </Item>
+    <Item>
+      <Source>Tiles\playerFade.png</Source>
+      <Name>Tiles\playerFade</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\playerFade.xnb</Output>
+      <Time>2015-05-11T14:03:08.9009896+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{D4C4FE3C-C91E-48BE-82BD-91BBD11AD5D9}</ContentProjectGUID>

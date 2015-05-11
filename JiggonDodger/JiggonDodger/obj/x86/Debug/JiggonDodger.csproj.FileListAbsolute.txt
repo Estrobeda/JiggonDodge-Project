@@ -56,3 +56,4 @@ C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\Jiggo
 C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\obj\x86\Debug\JiggonDodger.pdb
 C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Arrow-Indicatior.xnb
 C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Arrows-Up-Animation.xnb
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\playerFade.xnb

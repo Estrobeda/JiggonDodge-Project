@@ -11,9 +11,7 @@ namespace JiggonDodger
     {
         public static Rectangle screenBoundary { get; private set; }
         public static SpriteBatch spriteBatch { get; private set; }
-     //   public static JiggonDodger CurrentGame { get; set; }
         public static Random random = new Random();
-        private static GameTime _gameTime;
         private GraphicsDeviceManager jiggonGraphics;
 
 
@@ -50,9 +48,6 @@ namespace JiggonDodger
             jiggonGraphics.SynchronizeWithVerticalRetrace = true;
             this.IsFixedTimeStep = true;
 
-
-
-         //   CurrentGame = this;
         }
 
 

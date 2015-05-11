@@ -12,18 +12,21 @@ namespace JiggonDodger
         #region Properties and variables
         public Vector2 playerPosition { get; set; }
         public static Texture2D playerTexture { get; set; }
-
+        public static Texture2D playerFade {  get;  set; }
         private static float playerSpeed = 16;
 
         private Vector2 playerOldPosition;
         private Vector2 playerOriginPosition;
         private float playerRoatationAngle;
-        //private float deltaTime;
+
         private bool moveRightOrLeft = true;
+
+        
+        
+
+
         #endregion
 
-
-       
 
         public void Update(GameTime gameTime)
         {
@@ -38,17 +41,8 @@ namespace JiggonDodger
             {
                 playerPosition = playerOldPosition;
             }
-
+            
             IsDead();
-        }
-
-        private void IsDead()
-        {
-            if (!JiggonDodger.screenBoundary.Intersects(GetBounds()))
-            {
-                Health.healthCount--;
-                playerPosition = new Vector2(JiggonDodger.screenBoundary.Width / 2, JiggonDodger.screenBoundary.Height/16);
-            }
         }
 
         private Vector2 KeyboardAction()
@@ -57,7 +51,7 @@ namespace JiggonDodger
             KeyboardState keyboard = Keyboard.GetState();
             if (keyboard != new KeyboardState())
             {
-                if (keyboard.IsKeyDown(Keys.Up))
+                if (keyboard.IsKeyDown(Keys.Up) && !keyboard.IsKeyDown(Keys.Right) && !keyboard.IsKeyDown(Keys.Left))
                 {
                     movement -= Vector2.UnitY / 3;
                     playerRoatationAngle = (float)Math.PI;
@@ -66,7 +60,7 @@ namespace JiggonDodger
                     playerOriginPosition.Y = playerTexture.Height;
                 }
 
-                if (keyboard.IsKeyDown(Keys.Right))
+                if (keyboard.IsKeyDown(Keys.Right) || keyboard.IsKeyDown(Keys.Right) && keyboard.IsKeyDown(Keys.Up))
                 {
                     movement += Vector2.UnitX;
                     playerRoatationAngle = (float)Math.PI / 2;
@@ -75,7 +69,7 @@ namespace JiggonDodger
                     playerOriginPosition.Y = playerTexture.Height;
                 }
 
-                if (keyboard.IsKeyDown(Keys.Left))
+                if (keyboard.IsKeyDown(Keys.Left) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Up))
                 {
                     movement -= Vector2.UnitX;
                     playerRoatationAngle = -(float)Math.PI / 2;
@@ -95,10 +89,21 @@ namespace JiggonDodger
             return movement;
         }
 
+
         public Rectangle GetBounds()
         {
             return new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerTexture.Width, playerTexture.Height);
         }
+
+        private void IsDead()
+        {
+            if (!JiggonDodger.screenBoundary.Intersects(GetBounds()))
+            {
+                Health.healthCount--;
+                playerPosition = new Vector2(JiggonDodger.screenBoundary.Width / 2, JiggonDodger.screenBoundary.Height / 16);
+            }
+        }
+
 
         public void Draw()
         {
@@ -126,6 +131,11 @@ namespace JiggonDodger
                                               SpriteEffects.FlipVertically, 
                                               0f);
             }
+
+
+             
+             
+             
         }
     }
 }
