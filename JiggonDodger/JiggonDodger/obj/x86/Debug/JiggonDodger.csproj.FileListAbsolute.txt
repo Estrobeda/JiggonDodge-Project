@@ -57,3 +57,7 @@ C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\Jiggo
 C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Arrow-Indicatior.xnb
 C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\Arrows-Up-Animation.xnb
 C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\playerFade.xnb
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Particles\Circle.xnb
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Particles\Rectangle.xnb
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Audio\Effects\Bounce.xnb
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Particles\LowOpacityRectangle.xnb

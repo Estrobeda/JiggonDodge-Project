@@ -1,4 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * This class might be created to be used for furthur games also in order to organize 
+ * and maintain colors in the game, this will include randomizing colors, creating 
+ * static colors, move colors in arrays etc. This may also be useful for my
+ * particle engine for controlling color dynamics transparancy of particles.
+ */
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +14,25 @@ namespace JiggonDodger
 {
     public class BlockColor
     {
+        #region Variables
         private  Color returnColor;
         private  Random randomColor =  new Random();
-        private List<Color> colorList = new List<Color>();
         private List<Color> oldColorList = new List<Color>();
+        public List<Color> colorList = new List<Color>();
+        #endregion
 
-        private int timer;
-        private int counter = 50;
+        /*private int timer;
+        private int counter = 50;*/
+        private Timer timer = new Timer(50);
 
         public BlockColor() {
             CurrentColor = this;
         }
+        /// <para>
+        /// Returns the current color
+        /// </para>
+        public static BlockColor CurrentColor { get; private set; }
 
-        public static BlockColor CurrentColor { get; set; }
 
         public void setColor(int size)
         {
@@ -80,9 +92,9 @@ namespace JiggonDodger
         }
 
         public void Update() {
-            timer++;
-
-            if (timer >= counter)
+//            timer++;
+            timer.Ticker();
+            if (timer.IsOneTick())
             {
                 oldColorList = colorList;
                
@@ -92,7 +104,7 @@ namespace JiggonDodger
                     colorList.Insert((colorList.Count - 1) - i, oldColorList[i]);   
                 }
                
-                timer = 0;
+            //    timer = 0;
             }
         }
 

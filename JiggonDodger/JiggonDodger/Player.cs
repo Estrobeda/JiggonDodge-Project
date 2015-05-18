@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace JiggonDodger
@@ -10,40 +12,55 @@ namespace JiggonDodger
     {
 
         #region Properties and variables
-        public Vector2 playerPosition { get; set; }
-        public static Texture2D playerTexture { get; set; }
-        public static Texture2D playerFade {  get;  set; }
-        private static float playerSpeed = 16;
+        public Vector2 position { get; set; }
+        public static Texture2D texture { private get; set; }
+        public static SoundEffect hitEffect { private get; set; }
+        public static ParticleEngine tailEngine;
 
+
+        private bool isHit;
+        private Timer timer = new Timer(20);
+
+        private static float playerSpeed = 16;
         private Vector2 playerOldPosition;
         private Vector2 playerOriginPosition;
         private float playerRoatationAngle;
-
         private bool moveRightOrLeft = true;
-
-        
-        
-
 
         #endregion
 
-
         public void Update(GameTime gameTime)
         {
-          //  deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            playerOldPosition = playerPosition;
-            playerPosition += KeyboardAction() * playerSpeed;
-
+            timer.Ticker();
+            playerOldPosition = position;
+            tailEngine.Update();
+            position += KeyboardAction() * playerSpeed;
+            tailEngine.EmitterLocation = new Vector2(position.X + texture.Width/2, position.Y + texture.Height / 2);
             bool isWithinScreen = JiggonDodger.screenBoundary.Contains(this.GetBounds());
             bool isCollidingWithLines = JiggonDodger._blockRowsList.Any(line => line.Overlaps(GetBounds()));
 
             if (!isWithinScreen || isCollidingWithLines)
             {
-                playerPosition = playerOldPosition;
+                if (!isHit)
+                {
+                    
+                        hitEffect.Play();
+                    }
+                
+                isHit = true;
+
+                position = playerOldPosition;
             }
-            
+            else
+            {
+                if (timer.IsOneTick())
+                {
+                    isHit = false;
+                }
+            } 
             IsDead();
         }
+
 
         private Vector2 KeyboardAction()
         {
@@ -56,8 +73,8 @@ namespace JiggonDodger
                     movement -= Vector2.UnitY / 3;
                     playerRoatationAngle = (float)Math.PI;
                     moveRightOrLeft = false;
-                    playerOriginPosition.X = playerTexture.Width;
-                    playerOriginPosition.Y = playerTexture.Height;
+                    playerOriginPosition.X = texture.Width;
+                    playerOriginPosition.Y = texture.Height;
                 }
 
                 if (keyboard.IsKeyDown(Keys.Right) || keyboard.IsKeyDown(Keys.Right) && keyboard.IsKeyDown(Keys.Up))
@@ -66,7 +83,7 @@ namespace JiggonDodger
                     playerRoatationAngle = (float)Math.PI / 2;
                     moveRightOrLeft = true;
                     playerOriginPosition.X = 0;
-                    playerOriginPosition.Y = playerTexture.Height;
+                    playerOriginPosition.Y = texture.Height;
                 }
 
                 if (keyboard.IsKeyDown(Keys.Left) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Up))
@@ -74,7 +91,7 @@ namespace JiggonDodger
                     movement -= Vector2.UnitX;
                     playerRoatationAngle = -(float)Math.PI / 2;
                     moveRightOrLeft = true;
-                    playerOriginPosition.X = playerTexture.Width;
+                    playerOriginPosition.X = texture.Width;
                     playerOriginPosition.Y = 0;
                 }
             }
@@ -82,8 +99,8 @@ namespace JiggonDodger
             {
                 playerRoatationAngle = (float)Math.PI;
                 moveRightOrLeft = false;
-                playerOriginPosition.X = playerTexture.Width;
-                playerOriginPosition.Y = playerTexture.Height;
+                playerOriginPosition.X = texture.Width;
+                playerOriginPosition.Y = texture.Height;
             }
 
             return movement;
@@ -92,7 +109,7 @@ namespace JiggonDodger
 
         public Rectangle GetBounds()
         {
-            return new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerTexture.Width, playerTexture.Height);
+            return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }
 
         private void IsDead()
@@ -100,42 +117,43 @@ namespace JiggonDodger
             if (!JiggonDodger.screenBoundary.Intersects(GetBounds()))
             {
                 Health.healthCount--;
-                playerPosition = new Vector2(JiggonDodger.screenBoundary.Width / 2, JiggonDodger.screenBoundary.Height / 16);
+                position = new Vector2(JiggonDodger.screenBoundary.Width / 2, JiggonDodger.screenBoundary.Height / 16);
             }
         }
 
+  
 
-        public void Draw()
+
+        public void Draw(SpriteBatch spriteBatch)
         {
-            if (moveRightOrLeft)
-            {
-                JiggonDodger.spriteBatch.Draw(playerTexture, 
-                                              playerPosition, 
-                                              null, 
-                                              Color.White, 
-                                              playerRoatationAngle, 
-                                              playerOriginPosition, 
-                                              1, 
-                                              SpriteEffects.FlipHorizontally, 
-                                              0f);
-            }
-            else
-            {
-                JiggonDodger.spriteBatch.Draw(playerTexture, 
-                                              playerPosition, 
-                                              null, 
-                                              Color.White, 
-                                              playerRoatationAngle, 
-                                              playerOriginPosition, 
-                                              1, 
-                                              SpriteEffects.FlipVertically, 
-                                              0f);
-            }
 
-
-             
-             
-             
+     
+                tailEngine.Draw(spriteBatch);
+            
+                if (moveRightOrLeft)
+                {
+                    spriteBatch.Draw(texture,
+                                                  position,
+                                                  null,
+                                                  Color.White,
+                                                  playerRoatationAngle,
+                                                  playerOriginPosition,
+                                                  1,
+                                                  SpriteEffects.FlipHorizontally,
+                                                  0f);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture,
+                                                  position,
+                                                  null,
+                                                  Color.White,
+                                                  playerRoatationAngle,
+                                                  playerOriginPosition,
+                                                  1,
+                                                  SpriteEffects.FlipVertically,
+                                                  0f);
+                }
         }
     }
 }

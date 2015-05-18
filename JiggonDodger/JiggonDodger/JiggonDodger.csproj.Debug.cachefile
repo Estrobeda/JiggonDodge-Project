@@ -9,3 +9,7 @@ Content\Fonts\CreditsFont.xnb
 Content\Tiles\Arrow-Indicatior.xnb
 Content\Tiles\Arrows-Up-Animation.xnb
 Content\Tiles\playerFade.xnb
+Content\Particles\Circle.xnb
+Content\Particles\Rectangle.xnb
+Content\Audio\Effects\Bounce.xnb
+Content\Particles\LowOpacityRectangle.xnb

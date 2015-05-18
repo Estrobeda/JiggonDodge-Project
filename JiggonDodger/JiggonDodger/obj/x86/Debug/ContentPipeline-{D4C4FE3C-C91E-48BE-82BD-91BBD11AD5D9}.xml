@@ -100,6 +100,42 @@
       <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Tiles\playerFade.xnb</Output>
       <Time>2015-05-11T14:03:08.9009896+02:00</Time>
     </Item>
+    <Item>
+      <Source>Particles\Circle.png</Source>
+      <Name>Particles\Circle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Particles\Circle.xnb</Output>
+      <Time>2015-05-13T21:09:04.8154134+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Particles\Rectangle.png</Source>
+      <Name>Particles\Rectangle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Particles\Rectangle.xnb</Output>
+      <Time>2015-05-13T21:09:34.5993272+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Effects\Bounce.wav</Source>
+      <Name>Audio\Effects\Bounce</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Audio\Effects\Bounce.xnb</Output>
+      <Time>2015-05-13T09:49:41.0438637+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Particles\LowOpacityRectangle.png</Source>
+      <Name>Particles\LowOpacityRectangle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Particles\LowOpacityRectangle.xnb</Output>
+      <Time>2015-05-15T00:20:58.9872711+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{D4C4FE3C-C91E-48BE-82BD-91BBD11AD5D9}</ContentProjectGUID>

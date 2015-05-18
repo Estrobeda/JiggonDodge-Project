@@ -10,9 +10,15 @@ namespace JiggonDodger
     public class Map
     {
 
-        #region Public
-        public static float numberOfRows = 2;
-        public static int numberOfBoxesPerRow = 16;
+        //Check OOP and/or restructure if needed
+
+        #region Variables
+        private static float numberOfRows = 2;
+        private static int numberOfBoxesPerRow = 16;
+        #endregion
+
+        #region Public accessors
+        public static int getNumberOfBoxesPerRow { get { return numberOfBoxesPerRow; } }
         #endregion
 
         public Map()
@@ -26,7 +32,7 @@ namespace JiggonDodger
           //  Console.WriteLine("Create Player");
             Vector2 centeredCloseToBottom = new Vector2(JiggonDodger.screenBoundary.Width / 2, 
                                                         JiggonDodger.screenBoundary.Height * .6f);
-            JiggonDodger.linkToPlayer = new Player() { playerPosition = centeredCloseToBottom };
+            JiggonDodger.linkToPlayer = new Player() { position = centeredCloseToBottom };
         }
 
         //Fix Collision on top of ScreenBoundary!!!

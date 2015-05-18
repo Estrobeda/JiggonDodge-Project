@@ -6,22 +6,22 @@ namespace JiggonDodger
 {
     public class BlockRows
     {
-
-        #region public
-        public static Texture2D texture;
-        public static Texture2D arrowindication;
-        public static float speed = 16f;
-
-        public Vector2 position { get; set; }
-        public int IndexToEmptyPath { get; set; }
-
+        //Check OOP
+        #region Variables
         private Rectangle[] animationHolder;
+        private float deltaTime;
+        private int frame;
+        private static float speed = 16f;
+        Timer timer = new Timer(20);
         #endregion
 
-        private float deltaTime;
-        private int timer;
-        private int counter = 20;
-        private int frame;
+        #region Properties
+        public static Texture2D texture { get; set; }
+        public static Texture2D arrowindication { get; set; }
+        public static float Speed { get { return speed; } set { speed = value; } }
+        public Vector2 position { get; set; }
+        public int IndexToEmptyPath { get; set; }
+        #endregion
 
 
         public BlockRows(Vector2 _blockPosition, Texture2D _boxTexture)
@@ -44,38 +44,41 @@ namespace JiggonDodger
         public void SetRandomHole()
         {
 
-            IndexToEmptyPath = JiggonDodger.random.Next(Map.numberOfBoxesPerRow);
+            IndexToEmptyPath = JiggonDodger.random.Next(Map.getNumberOfBoxesPerRow);
             
         }
 
         public void Update(GameTime gameTime)
         {
-            timer++;
-            if (timer >= counter)
+        
+            timer.Ticker();
+            if (timer.IsOneTick())
             {
-                timer = 0;
                 frame++;
                 if (frame >= animationHolder.Length)
                 {
                     frame = 0;
                 }
             }
+
             deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            position += Vector2.UnitY * speed * deltaTime;     
+            position +=  Vector2.UnitY * speed * deltaTime;
+           
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < Map.numberOfBoxesPerRow ; i++)
+            for (int i = 0; i < Map.getNumberOfBoxesPerRow ; i++)
             {
                 if (i != IndexToEmptyPath)
                 {
-                    JiggonDodger.spriteBatch.Draw(texture, 
+                    spriteBatch.Draw(texture, 
                                                   position + i * Vector2.UnitX * texture.Width, 
-                                                  BlockColor.CurrentColor.getColor(Map.numberOfBoxesPerRow - i));  //Change CurrentColor.getColor(Map.numberOfBoxesPerRow-i) to Color.White if the color changes are to extreame
+                                                  BlockColor.CurrentColor.getColor(Map.getNumberOfBoxesPerRow - i));  //Change CurrentColor.getColor(Map.numberOfBoxesPerRow-i) to Color.White if the color changes are to extreame
                 }
-                else {
-                    JiggonDodger.spriteBatch.Draw(arrowindication, 
+                else 
+                {
+                    spriteBatch.Draw(arrowindication, 
                                                   new Rectangle((int)(position.X + i * texture.Width) + texture.Width/4, //Center on X axis
                                                         (int)position.Y + texture.Height/4, //Center on Y axis
                                                         32, //tile width
@@ -89,9 +92,9 @@ namespace JiggonDodger
         public bool Overlaps(Rectangle rect)
         {
             Rectangle testRectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
-            Vector2 originalPos = JiggonDodger.linkToPlayer.playerPosition;
+            Vector2 originalPos = JiggonDodger.linkToPlayer.position;
            
-            for (int i = 0; i < Map.numberOfBoxesPerRow; i++)
+            for (int i = 0; i < Map.getNumberOfBoxesPerRow; i++)
             {
                 testRectangle.X = i * texture.Width;
                 if (i != IndexToEmptyPath && testRectangle.Intersects(rect))
@@ -101,6 +104,12 @@ namespace JiggonDodger
 
             }
             return false;
+        }
+
+        public Rectangle Bounds()
+        {
+
+            return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }
     }
 }

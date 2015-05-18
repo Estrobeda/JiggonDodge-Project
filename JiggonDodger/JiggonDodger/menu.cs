@@ -19,7 +19,7 @@ namespace JiggonDodger
             StartGame = 3,
             MoveDown = 4
         }
-        #region Variables
+        #region Properties and Variables
         public static SpriteFont creditsFont { get; set; }
         public  bool isPaused { get; set; }
         private Vector2 startGamePos;
@@ -52,17 +52,17 @@ namespace JiggonDodger
         #endregion
 
 
-        public Menu()
+        public Menu(int UI_OffsetX, int UI_OffsetY)
         {
           //  select = 0;
-            startGamePos = new Vector2(JiggonDodger.UI_OffsetX, 40);
-            creditsPos = new Vector2(JiggonDodger.UI_OffsetX, 80);
-            creditsTextPos = new Vector2(JiggonDodger.UI_OffsetX + 200, 80);
+            startGamePos = new Vector2(UI_OffsetX, 40);
+            creditsPos = new Vector2(UI_OffsetX, 80);
+            creditsTextPos = new Vector2(UI_OffsetX + 200, 80);
 
-            helpPos = new Vector2(JiggonDodger.UI_OffsetX , 120);
-            helpTextPos = new Vector2(JiggonDodger.UI_OffsetX + 200, 120); 
+            helpPos = new Vector2(UI_OffsetX , 120);
+            helpTextPos = new Vector2(UI_OffsetX + 200, 120); 
 
-            exitPos = new Vector2(JiggonDodger.UI_OffsetX, JiggonDodger.screenBoundary.Height / 3.25f);
+            exitPos = new Vector2(UI_OffsetX, JiggonDodger.screenBoundary.Height / 3.25f);
 
             isPaused = false;
         }
@@ -92,7 +92,7 @@ namespace JiggonDodger
                 if (!isPaused)
                 {
                     Health.healthCount = 3;
-                    Points.CurrentPoints.Time = 0;
+                //    Points.CurrentPoints.Time = 0;
                 }
                 JiggonDodger.isGameOver = false;
             }
@@ -131,7 +131,7 @@ namespace JiggonDodger
                     break;
 
                 case (int)menuState.StartGame:
-                    BlockRows.speed = 0.3f;
+                    BlockRows.Speed = 0.3f;
                         JiggonDodger.spriteBatch.DrawString(Points.pointsFont, selectLabel, startGamePos, Color.White);
                     break;
 
