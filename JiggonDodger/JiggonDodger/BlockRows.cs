@@ -50,20 +50,22 @@ namespace JiggonDodger
 
         public void Update(GameTime gameTime)
         {
-        
-            timer.Ticker();
-            if (timer.IsOneTick())
+            if (!JiggonDodger.isGameOver)
             {
-                frame++;
-                if (frame >= animationHolder.Length)
+                timer.Ticker();
+                if (timer.IsOneTick())
                 {
-                    frame = 0;
+                    frame++;
+                    if (frame >= animationHolder.Length)
+                    {
+                        frame = 0;
+                    }
                 }
-            }
 
-            deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            position +=  Vector2.UnitY * speed * deltaTime;
-           
+
+                deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                position += Vector2.UnitY * speed * deltaTime;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

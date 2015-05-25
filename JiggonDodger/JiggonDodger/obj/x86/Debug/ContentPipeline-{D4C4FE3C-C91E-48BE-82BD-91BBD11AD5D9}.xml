@@ -136,6 +136,42 @@
       <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Particles\LowOpacityRectangle.xnb</Output>
       <Time>2015-05-15T00:20:58.9872711+02:00</Time>
     </Item>
+    <Item>
+      <Source>Backgounds\BG1.png</Source>
+      <Name>Backgounds\BG1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Backgounds\BG1.xnb</Output>
+      <Time>2015-05-18T15:03:13.9650525+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Backgounds\Menu.png</Source>
+      <Name>Backgounds\Menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Backgounds\Menu.xnb</Output>
+      <Time>2015-05-19T10:21:10.1037442+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Backgounds\BG2.png</Source>
+      <Name>Backgounds\BG2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Backgounds\BG2.xnb</Output>
+      <Time>2015-05-19T10:13:49.1947374+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Music\Ouroboros.wav</Source>
+      <Name>Audio\Music\Ouroboros</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Audio\Music\Ouroboros.xnb</Output>
+      <Time>2015-05-19T11:02:07.1804579+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{D4C4FE3C-C91E-48BE-82BD-91BBD11AD5D9}</ContentProjectGUID>

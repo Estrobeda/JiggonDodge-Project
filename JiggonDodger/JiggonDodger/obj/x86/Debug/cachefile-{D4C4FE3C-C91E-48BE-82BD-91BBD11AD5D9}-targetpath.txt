@@ -13,3 +13,7 @@ Content\Particles\Circle.xnb
 Content\Particles\Rectangle.xnb
 Content\Audio\Effects\Bounce.xnb
 Content\Particles\LowOpacityRectangle.xnb
+Content\Backgounds\BG1.xnb
+Content\Backgounds\Menu.xnb
+Content\Backgounds\BG2.xnb
+Content\Audio\Music\Ouroboros.xnb

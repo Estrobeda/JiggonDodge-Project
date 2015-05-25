@@ -14,7 +14,7 @@ namespace JiggonDodger
         #region Properties and variables
         public Vector2 position { get; set; }
         public static Texture2D texture { private get; set; }
-        public static SoundEffect hitEffect { private get; set; }
+        public static SoundEffect hitEffect {  get; set; }
         public static ParticleEngine tailEngine;
 
 
@@ -22,8 +22,10 @@ namespace JiggonDodger
         private Timer timer = new Timer(20);
 
         private static float playerSpeed = 16;
+        
         private Vector2 playerOldPosition;
         private Vector2 playerOriginPosition;
+        
         private float playerRoatationAngle;
         private bool moveRightOrLeft = true;
 
@@ -31,34 +33,43 @@ namespace JiggonDodger
 
         public void Update(GameTime gameTime)
         {
-            timer.Ticker();
-            playerOldPosition = position;
-            tailEngine.Update();
-            position += KeyboardAction() * playerSpeed;
-            tailEngine.EmitterLocation = new Vector2(position.X + texture.Width/2, position.Y + texture.Height / 2);
-            bool isWithinScreen = JiggonDodger.screenBoundary.Contains(this.GetBounds());
-            bool isCollidingWithLines = JiggonDodger._blockRowsList.Any(line => line.Overlaps(GetBounds()));
-
-            if (!isWithinScreen || isCollidingWithLines)
+            #region Update Components
+            if (!JiggonDodger.isGameOver)
             {
-                if (!isHit)
+                timer.Ticker();
+                playerOldPosition = position;
+                tailEngine.Update();
+                position += KeyboardAction() * playerSpeed * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 25;
+                tailEngine.EmitterLocation = new Vector2(position.X + texture.Width / 2, position.Y + texture.Height / 2);
+             #endregion
+                bool isWithinScreen = JiggonDodger.screenBoundary.Contains(this.GetBounds());
+                bool isCollidingWithLines = JiggonDodger._blockRowsList.Any(line => line.Overlaps(GetBounds()));
+
+                if (!isWithinScreen || isCollidingWithLines)
                 {
-                    
+                    position = playerOldPosition;
+                }
+
+                if (isCollidingWithLines)
+                {
+                    if (!isHit)
+                    {
+
                         hitEffect.Play();
                     }
-                
-                isHit = true;
 
-                position = playerOldPosition;
-            }
-            else
-            {
-                if (timer.IsOneTick())
-                {
-                    isHit = false;
+                    isHit = true;
                 }
-            } 
-            IsDead();
+                else
+                {
+                    if (timer.IsOneTick())
+                    {
+                        isHit = false;
+                    }
+                }
+
+                IsDead();
+            }
         }
 
 

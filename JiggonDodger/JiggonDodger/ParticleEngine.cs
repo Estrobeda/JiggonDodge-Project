@@ -80,8 +80,10 @@ namespace JiggonDodger
             }
         }
 
-        public void Update02(GameTime gameTime)
+        //Experimental update function. Used for the tail on the player
+        public void UpdateTail(GameTime gameTime)
         {
+            if (!JiggonDodger.isGameOver) { 
             int total = 1;
 
             for (int i = 0; i < total; i++)
@@ -97,6 +99,7 @@ namespace JiggonDodger
                     particles.RemoveAt(particle);
                     particle--;
                 }
+            }
             }
         }
 

@@ -43,7 +43,9 @@ namespace JiggonDodger
                                          + "You will have to move through the holes \n "
                                          + "in the Rows that are falling downwards. \n "
                                          + "You have 3 extra lives and the Rows will \n"
-                                         + " fall faster and faster";
+                                         + " fall faster and faster"
+                                         + "\n"
+                                         + "Mute/Unmute on M";
 
         private String exitLabel = " Exit";
 
@@ -54,7 +56,7 @@ namespace JiggonDodger
 
         public Menu(int UI_OffsetX, int UI_OffsetY)
         {
-          //  select = 0;
+            select = 3;
             startGamePos = new Vector2(UI_OffsetX, 40);
             creditsPos = new Vector2(UI_OffsetX, 80);
             creditsTextPos = new Vector2(UI_OffsetX + 200, 80);
@@ -62,7 +64,7 @@ namespace JiggonDodger
             helpPos = new Vector2(UI_OffsetX , 120);
             helpTextPos = new Vector2(UI_OffsetX + 200, 120); 
 
-            exitPos = new Vector2(UI_OffsetX, JiggonDodger.screenBoundary.Height / 3.25f);
+            exitPos = new Vector2(UI_OffsetX, JiggonDodger.screenBoundary.Height / 4.8f);
 
             isPaused = false;
         }

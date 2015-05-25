@@ -61,3 +61,7 @@ C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\Jiggo
 C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Particles\Rectangle.xnb
 C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Audio\Effects\Bounce.xnb
 C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Particles\LowOpacityRectangle.xnb
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Backgounds\BG1.xnb
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Backgounds\Menu.xnb
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Backgounds\BG2.xnb
+C:\Users\rickard.ostlund\Documents\GitHub\JiggonDodge-Project\JiggonDodger\JiggonDodger\bin\x86\Debug\Content\Audio\Music\Ouroboros.xnb
