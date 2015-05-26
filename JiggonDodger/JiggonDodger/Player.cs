@@ -16,7 +16,7 @@ namespace JiggonDodger
         public static Texture2D texture { private get; set; }
         public static SoundEffect hitEffect {  get; set; }
         public static ParticleEngine tailEngine;
-
+        public bool isMuted = false;
 
         private bool isHit;
         private Timer timer = new Timer(20);
@@ -37,10 +37,14 @@ namespace JiggonDodger
             if (!JiggonDodger.isGameOver)
             {
                 timer.Ticker();
+              
                 playerOldPosition = position;
-                tailEngine.Update();
                 position += KeyboardAction() * playerSpeed * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 25;
+
+                tailEngine.Update();
                 tailEngine.EmitterLocation = new Vector2(position.X + texture.Width / 2, position.Y + texture.Height / 2);
+
+            
              #endregion
                 bool isWithinScreen = JiggonDodger.screenBoundary.Contains(this.GetBounds());
                 bool isCollidingWithLines = JiggonDodger._blockRowsList.Any(line => line.Overlaps(GetBounds()));
@@ -50,11 +54,11 @@ namespace JiggonDodger
                     position = playerOldPosition;
                 }
 
-                if (isCollidingWithLines)
+                if (isCollidingWithLines && !isMuted)
                 {
                     if (!isHit)
                     {
-
+                        Console.WriteLine("Is playering");
                         hitEffect.Play();
                     }
 
@@ -64,6 +68,7 @@ namespace JiggonDodger
                 {
                     if (timer.IsOneTick())
                     {
+                      
                         isHit = false;
                     }
                 }

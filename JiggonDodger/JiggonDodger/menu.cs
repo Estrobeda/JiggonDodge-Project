@@ -23,6 +23,7 @@ namespace JiggonDodger
         public static SpriteFont creditsFont { get; set; }
         public  bool isPaused { get; set; }
         private Vector2 startGamePos;
+        private Vector2 menuPos;
         private Vector2 creditsPos;
         private Vector2 creditsTextPos;
         private Vector2 helpPos;
@@ -33,7 +34,7 @@ namespace JiggonDodger
         private String selectLabel = ">";
         private String startLabel = " Start";
         private String continueLabel = " Continue";
-
+        private String menuLable = " [<]Menu";
         private String creditsLabel = " Credits";
         private String creditsText = " Created by Rickard Ostlund 2015 [LBS Halmstad] \n Supported and Inspired by xnaFAN.net";
 
@@ -50,7 +51,9 @@ namespace JiggonDodger
         private String exitLabel = " Exit";
 
         private bool isPressed = false;
-        public  int select = 0;
+        private bool requestMenu = true;
+
+        public  int select = 3;
         #endregion
 
 
@@ -79,29 +82,48 @@ namespace JiggonDodger
                 }
                 if (keyState.IsKeyDown(Keys.Down) && !isPressed)
                 {
+                    
                     select--;
                     isPressed = true;
                 }
+
                 if(keyState == new KeyboardState()){
                     isPressed = false;
                 }
 
-            if (select == 3 && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                if (select == (int)menuState.StartGame && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+             
+                    if (!isPaused)
+                        {
+                            Health.healthCount = 3;
+                    
+                   
+                        }
+                    JiggonDodger.isGameOver = false;
+                
+                }
+
+                if (select == 1 && Keyboard.GetState().IsKeyDown(Keys.Enter) && isPaused)
+                {
+
+                    JiggonDodger.isGameOver = true;
+                    Points.CurrentPoints.resetPoints();
+                    requestMenu = true;
+                    isPaused = false;
+                }
+                if (Keyboard.GetState().IsKeyUp(Keys.Enter) && requestMenu)
+                {
+                    select = 3;
+                    requestMenu = false;
+                }
+
+            if (select == (int)menuState.ExitGame && Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
-                
-                
-                //Store this later to create a HighScore!!!! [Progress not started yet]
                 if (!isPaused)
                 {
-                    Health.healthCount = 3;
-                //    Points.CurrentPoints.Time = 0;
+                    JiggonDodger.exitGame = true;
                 }
-                JiggonDodger.isGameOver = false;
-            }
-
-            if (select == 0 && Keyboard.GetState().IsKeyDown(Keys.Enter))
-            {
-                JiggonDodger.exitGame = true;
             }
             
         }
@@ -114,22 +136,34 @@ namespace JiggonDodger
 
             if (!isPaused)
             {
+                Console.WriteLine("StartMenu");
                 JiggonDodger.spriteBatch.DrawString(Points.pointsFont, startLabel, startGamePos, Color.White);
+                JiggonDodger.spriteBatch.DrawString(Points.pointsFont, creditsLabel, creditsPos, Color.White);
+                JiggonDodger.spriteBatch.DrawString(Points.pointsFont, helpLabel, helpPos, Color.White);
+                JiggonDodger.spriteBatch.DrawString(Points.pointsFont, exitLabel, exitPos, Color.White);
             }
             else
             {
+                Console.WriteLine("Pause Menu");
+                menuPos = helpPos;
+               
                 JiggonDodger.spriteBatch.DrawString(Points.pointsFont, continueLabel, startGamePos, Color.White);
+                JiggonDodger.spriteBatch.DrawString(Points.pointsFont, menuLable, menuPos, Color.White);
+                JiggonDodger.spriteBatch.DrawString(Points.pointsFont, helpLabel, creditsPos, Color.White);
+                
             }
-            JiggonDodger.spriteBatch.DrawString(Points.pointsFont, creditsLabel, creditsPos, Color.White);
-
-            JiggonDodger.spriteBatch.DrawString(Points.pointsFont, helpLabel, helpPos, Color.White);
-
-            JiggonDodger.spriteBatch.DrawString(Points.pointsFont, exitLabel, exitPos, Color.White);
-
+                
             switch (select)
             {
                 case (int)menuState.MoveDown:
-                    select = 0;
+                    if (!isPaused)
+                    {
+                        select = 0;
+                    }
+                    else
+                    {
+                        select = 3;
+                    }
                     break;
 
                 case (int)menuState.StartGame:
@@ -138,8 +172,13 @@ namespace JiggonDodger
                     break;
 
                 case (int)menuState.Credits:
-                    JiggonDodger.spriteBatch.DrawString(Points.pointsFont, selectLabel, creditsPos, Color.White);
-                    JiggonDodger.spriteBatch.DrawString(creditsFont, creditsText, creditsTextPos, Color.White);
+
+                        JiggonDodger.spriteBatch.DrawString(Points.pointsFont, selectLabel, creditsPos, Color.White);
+                    if (!isPaused)
+                    {
+                        JiggonDodger.spriteBatch.DrawString(creditsFont, creditsText, creditsTextPos, Color.White);
+                    }
+                    
                     break;
 
                 case (int)menuState.HelpMe:
@@ -148,13 +187,20 @@ namespace JiggonDodger
                     break;
 
                 case (int)menuState.ExitGame:
-                    JiggonDodger.spriteBatch.DrawString(Points.pointsFont, selectLabel, exitPos, Color.White);
+                    if (!isPaused)
+                    {
+                        JiggonDodger.spriteBatch.DrawString(Points.pointsFont, selectLabel, exitPos, Color.White);
+                    }
+                    else
+                    {
+                        select = 3;
+                    }
                     break;
 
                 case (int)menuState.MoveUp:
                     select = 3;
                     break;
-
+                    
             }
 
 

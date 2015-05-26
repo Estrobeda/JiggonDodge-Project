@@ -50,6 +50,11 @@ namespace JiggonDodger
             return timeHolder;
         }
 
+        public void SetTime(int time)
+        {
+            timeHolder = time;
+        }
+
         
 
         

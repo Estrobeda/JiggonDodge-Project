@@ -16,6 +16,7 @@ namespace JiggonDodger
         public static Texture2D pointsTexture { get; set; }
         public static Vector2 pointsPosition { get; set; }
         public static Vector2 pointTextPosition { get; set; }
+        public bool isGameOver = false;
         #endregion
 
         private Timer timer = new Timer(60);
@@ -27,7 +28,11 @@ namespace JiggonDodger
 
         public void Update()
         {
-            timer.Ticker();
+                timer.Ticker();
+        }
+
+        public void resetPoints() {
+            timer.SetTime(0);
         }
 
         public static Points CurrentPoints { get; private set; }

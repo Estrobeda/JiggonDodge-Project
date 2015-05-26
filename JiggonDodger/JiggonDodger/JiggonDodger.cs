@@ -78,11 +78,9 @@ namespace JiggonDodger
             Menu.creditsFont = Content.Load<SpriteFont>(@"Fonts\CreditsFont");
             #endregion
 
-
             screenBoundary = GraphicsDevice.PresentationParameters.Bounds;
       
             Player.tailEngine = new ParticleEngine(_tailParticles, new Vector2(0,0));
-
             Points.pointsPosition = new Vector2(UI_OffsetX, UI_OffsetY);
             Points.pointTextPosition = new Vector2(UI_OffsetX + Points.pointsTexture.Width * 1.25f, Points.pointsPosition.Y);
 
@@ -97,10 +95,7 @@ namespace JiggonDodger
             map = new Map();
             particles = new ParticleEngine(_worldEnd, new Vector2(0, 0));
             particles.EmitterLocation = Vector2.UnitY*(screenBoundary.Height-64);
-          //  music.Play();
 
-            hitEffectState = Player.hitEffect.CreateInstance();
-            
             
         }
 
@@ -117,14 +112,11 @@ namespace JiggonDodger
                 musicState.Play();
                 if (!isMute)
                 {
-                    musicState.Volume = 1;
-                 
-                    
+                    musicState.Volume = 1; 
                 }
                 else
                 {
                     musicState.Volume = 0;
-                
                 }
                 if (musicState.IsLooped)
                 {
@@ -157,11 +149,22 @@ namespace JiggonDodger
 
             if (timer.IsOneTick())
             {
-                if (keyboard.IsKeyDown(Keys.D1))
+                if (keyboard.IsKeyDown(Keys.M))
                 {
                     if (isMute)
                     {
-
+                        isMute = false;
+                        linkToPlayer.isMuted = false;
+                    }
+                    else
+                    {
+                        isMute = true;
+                        linkToPlayer.isMuted = true;
+                    }
+                }
+                if(keyboard.IsKeyDown(Keys.D1)){
+                    if (isMute)
+                    {
                         isMute = false;
                     }
                     else
@@ -169,17 +172,19 @@ namespace JiggonDodger
                         isMute = true;
                     }
                 }
-       /*         if (keyboard.IsKeyDown(Keys.D2))
+
+                if (keyboard.IsKeyDown(Keys.D2))
                 {
-                    if (isMute)
+                    if (linkToPlayer.isMuted)
                     {
-                        isMute = false;
+                        linkToPlayer.isMuted = false;
                     }
                     else
                     {
-                        isMute = true;
+                        linkToPlayer.isMuted = true;
                     }
-                }*/
+                }
+
             }
         }
 
