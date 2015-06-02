@@ -106,6 +106,7 @@ namespace JiggonDodger
             menu.Select(gameTime);
             particles.UpdateTail(gameTime);
             timer.Ticker();
+            
 
             if (!isGameOver)
             {
@@ -130,6 +131,8 @@ namespace JiggonDodger
             }
             else
             {
+          
+                
                 musicState.Pause();
             }
             if (exitGame && isGameOver)
@@ -221,9 +224,12 @@ namespace JiggonDodger
                     }
             } else
                 {
-                    if (menu.select > 4 || menu.select < -1) menu.select = 3;
-                    spriteBatch.Draw(background1, new Vector2(0, 0), Color.White);
-                    menu.Draw();
+                    if (isGameOver)
+                    {
+                        if (menu.select > 4 || menu.select < -1) menu.select = 3;
+                        spriteBatch.Draw(background1, new Vector2(0, 0), Color.White);
+                        menu.Draw();
+                    }
                 }
 
             spriteBatch.End();
