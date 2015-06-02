@@ -52,10 +52,8 @@ namespace JiggonDodger
 
         private bool isPressed = false;
         private bool requestMenu = true;
-        private bool isEnter = false;
-        private int counter = 0;
+
         public  int select = 3;
-        private int waitForInput = 0;
         #endregion
 
 
@@ -77,66 +75,57 @@ namespace JiggonDodger
         public void Select(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState == new KeyboardState())
-            {
-                isPressed = false;
-            }
-   
-            if (keyState.IsKeyDown(Keys.Up) && !isPressed)
-            {
-                select++;
-                isPressed = true;
-            }
-            if (keyState.IsKeyDown(Keys.Down) && !isPressed)
-            {
-                select--;
-                isPressed = true;
-            }
-            if (keyState.IsKeyDown(Keys.Enter))
-            {
-                isEnter = true;
-            }
-            if (keyState.IsKeyUp(Keys.Enter))
-            {
-                isEnter = false;
-            }
+                if (keyState.IsKeyDown(Keys.Up) && !isPressed)
+                {
+                    select++;
+                    isPressed = true;
+                }
+                if (keyState.IsKeyDown(Keys.Down) && !isPressed)
+                {
+                    
+                    select--;
+                    isPressed = true;
+                }
 
-            if (!isPaused && JiggonDodger.isGameOver)
-            {
-                if(select == (int)menuState.StartGame && isEnter)
+                if(keyState == new KeyboardState()){
+                    isPressed = false;
+                }
+
+                if (select == (int)menuState.StartGame && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+             
+                    if (!isPaused)
+                        {
+                            Health.healthCount = 3;
+                    
+                   
+                        }
+                    JiggonDodger.isGameOver = false;
+                
+                }
+
+                if (select == 1 && Keyboard.GetState().IsKeyDown(Keys.Enter) && isPaused)
                 {
 
-                    if (waitForInput <= 0)
-                    {
-                        Health.healthCount = 3;
-                        Points.CurrentPoints.resetPoints();
-                        JiggonDodger.isGameOver = false;
-                    }
-                    
+                    JiggonDodger.isGameOver = true;
+                    Points.CurrentPoints.resetPoints();
+                    requestMenu = true;
+                    isPaused = false;
                 }
-                if (select == (int)menuState.ExitGame && isEnter)
+                if (Keyboard.GetState().IsKeyUp(Keys.Enter) && requestMenu)
+                {
+                    select = 3;
+                    requestMenu = false;
+                }
+
+            if (select == (int)menuState.ExitGame && Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                if (!isPaused)
                 {
                     JiggonDodger.exitGame = true;
                 }
             }
-            else 
-            {
-                if(select == (int)menuState.StartGame && isEnter)
-                {
-                    JiggonDodger.isGameOver = false;
-                    isPaused = false;
-                }
-                if (select == (int)menuState.HelpMe && isEnter) 
-                {
-                    isPaused = false;
-                    requestMenu = true;
-                    isEnter = false;
-                    select = 2;
-                    JiggonDodger.isGameOver = true;
-                }
-            }
-
-
+            
         }
 
 
