@@ -25,7 +25,10 @@ namespace JiggonDodger
         {
             CreatePlayer();
             CreateBlockLines();
+            ThisMap = this;
         }
+
+        public static Map ThisMap { get; set; }
 
         private void CreatePlayer()
         {
@@ -49,20 +52,24 @@ namespace JiggonDodger
 
         public void MoveBlockLinesAndPushPlayerIfNeeded(GameTime gameTime)
         {
+            
             foreach (var line in JiggonDodger._blockRowsList)
             {
-                line.Update(gameTime);
-                JiggonDodger.PushPlayerOnCollision(line);
+           
+                    line.Update(gameTime);
+                    JiggonDodger.PushPlayerOnCollision(line);
+                
                 MoveLineAboveScreenIfItIsBelowScreen(line);
             }
         }
 
-        public void MoveLineAboveScreenIfItIsBelowScreen(BlockRows line)
+        public void MoveLineAboveScreenIfItIsBelowScreen(BlockRows rows)
         {
-            if (line.position.Y > JiggonDodger.screenBoundary.Height)
+            if (rows.position.Y > JiggonDodger.screenBoundary.Height)
             {
-                line.GenerateRandom();
+                rows.GenerateRandom();
             }
         }
+
     }
 }

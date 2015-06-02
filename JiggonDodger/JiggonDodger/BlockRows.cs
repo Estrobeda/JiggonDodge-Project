@@ -37,6 +37,7 @@ namespace JiggonDodger
 
         internal void GenerateRandom()
         {
+            
             position = Vector2.Zero - (Vector2.UnitY * texture.Height);
             SetRandomHole();
         }
@@ -61,35 +62,39 @@ namespace JiggonDodger
                         frame = 0;
                     }
                 }
-
-
+                speed += (float) gameTime.ElapsedGameTime.TotalHours;
                 deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 position += Vector2.UnitY * speed * deltaTime;
+                Console.WriteLine(speed);   
             }
+
+    
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < Map.getNumberOfBoxesPerRow ; i++)
-            {
-                if (i != IndexToEmptyPath)
+ 
+                for (int i = 0; i < Map.getNumberOfBoxesPerRow; i++)
                 {
-                    spriteBatch.Draw(texture, 
-                                                  position + i * Vector2.UnitX * texture.Width, 
-                                                  BlockColor.CurrentColor.getColor(Map.getNumberOfBoxesPerRow - i));  //Change CurrentColor.getColor(Map.numberOfBoxesPerRow-i) to Color.White if the color changes are to extreame
-                }
-                else 
-                {
-                    spriteBatch.Draw(arrowindication, 
-                                                  new Rectangle((int)(position.X + i * texture.Width) + texture.Width/4, //Center on X axis
-                                                        (int)position.Y + texture.Height/4, //Center on Y axis
-                                                        32, //tile width
-                                                        32), //tile height
-                                                        animationHolder[frame], //Current frame texture
-                                                      Color.White); 
+                    if (i != IndexToEmptyPath)
+                    {
+                        spriteBatch.Draw(texture,
+                                                      position + i * Vector2.UnitX * texture.Width,
+                                                      BlockColor.CurrentColor.getColor(Map.getNumberOfBoxesPerRow - i));  //Change CurrentColor.getColor(Map.numberOfBoxesPerRow-i) to Color.White if the color changes are to extreame
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(arrowindication,
+                                                      new Rectangle((int)(position.X + i * texture.Width) + texture.Width / 4, //Center on X axis
+                                                            (int)position.Y + texture.Height / 4, //Center on Y axis
+                                                            32, //tile width
+                                                            32), //tile height
+                                                            animationHolder[frame], //Current frame texture
+                                                          Color.White);
+                    }
                 }
             }
-        }
+        
 
         public bool Overlaps(Rectangle rect)
         {
